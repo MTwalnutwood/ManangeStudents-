@@ -1,0 +1,139 @@
+﻿@model IEnumerable<WebApplication10.Models.Student>
+
+@{
+    ViewBag.Title = "Students List";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Students</h2>
+
+        <form method="post" action="@Url.Action("Create")" id="studentForm" class="mb-4">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="Name">Student Name</label>
+                    <input type="text" class="form-control" id="Name" name="Name" placeholder="Student Name" required />
+                    <span id="nameError" class="error-message"></span>
+                </div>
+                <div class="col-md-2 form-group">
+                    <label for="PhysicsGrade">Physics Grade</label>
+                    <input type="number" class="form-control" id="PhysicsGrade" name="PhysicsGrade" placeholder="Physics" required min="0" max="20" />
+                    <span id="physicsGradeError" class="error-message"></span>
+                </div>
+                <div class="col-md-2 form-group">
+                    <label for="MathematicsGrade">Mathematics Grade</label>
+                    <input type="number" class="form-control" id="MathematicsGrade" name="MathematicsGrade" placeholder="Mathematics" required min="0" max="20" />
+                    <span id="mathematicsGradeError" class="error-message"></span>
+                </div>
+                <div class="col-md-2 form-group">
+                    <label for="Science">Science Grade</label>
+                    <input type="number" class="form-control" id="Science" name="Science" placeholder="Science" required min="0" max="20" />
+                    <span id="scienceError" class="error-message"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Student</button>
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Physics Grade</th>
+                    <th>Mathematics Grade</th>
+                    <th>Science</th>
+                    <th>Average Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                        <td>@student.PhysicsGrade</td>
+                        <td>@student.MathematicsGrade</td>
+                        <td>@student.Science</td>
+                        <td>@student.CalculateAverage()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a href="@Url.Action("Statistics")" class="btn btn-info">View Statistics</a>
+    </div>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("studentForm").addEventListener("submit", function (event) {
+                let isValid = true;
+
+                // Validate Name
+                const nameField = document.getElementById("Name");
+                const nameError = document.getElementById("nameError");
+                if (!isNaN(nameField.value) || nameField.value.trim() === "") {
+                    nameError.textContent = "Name must be a valid string.";
+                    isValid = false;
+                } else {
+                    nameError.textContent = "";
+                }
+
+                // Validate Physics Grade
+                const physicsField = document.getElementById("PhysicsGrade");
+                const physicsError = document.getElementById("physicsGradeError");
+                if (parseInt(physicsField.value) < 0 || parseInt(physicsField.value) > 20) {
+                    physicsError.textContent = "Grade must be between 0 and 20.";
+                    isValid = false;
+                } else {
+                    physicsError.textContent = "";
+                }
+
+                // Validate Mathematics Grade
+                const mathematicsField = document.getElementById("MathematicsGrade");
+                const mathematicsError = document.getElementById("mathematicsGradeError");
+                if (parseInt(mathematicsField.value) < 0 || parseInt(mathematicsField.value) > 20) {
+                    mathematicsError.textContent = "Grade must be between 0 and 20.";
+                    isValid = false;
+                } else {
+                    mathematicsError.textContent = "";
+                }
+
+                // Validate Science Grade
+                const scienceField = document.getElementById("Science");
+                const scienceError = document.getElementById("scienceError");
+                if (parseInt(scienceField.value) < 0 || parseInt(scienceField.value) > 20) {
+                    scienceError.textContent = "Grade must be between 0 and 20.";
+                    isValid = false;
+                } else {
+                    scienceError.textContent = "";
+                }
+
+                // Prevent form submission if validation fails
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

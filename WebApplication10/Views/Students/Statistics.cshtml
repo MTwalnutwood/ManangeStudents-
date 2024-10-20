@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Statistics";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Statistics</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Average Grade of All Students:</strong> @ViewBag.Average</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Highest Average Grade:</strong> @ViewBag.Highest</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p><strong>Lowest Average Grade:</strong> @ViewBag.Lowest</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Passing Rate:</strong> @ViewBag.PassingAverage</p>
+            </div>
+        </div>
+
+        <a href="@Url.Action("Index")" class="btn btn-primary">Back to Student List</a>
+    </div>
+</body>
+</html>  

@@ -1,0 +1,56 @@
+﻿@model WebApplication10.Models.Student
+@{
+    ViewBag.Title = "Add Student";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-center">Add Student</h2>
+        <form method="post" action="@Url.Action("Create")">
+            <div class="form-group">
+                <label for="Name">Student Name</label>
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Student Name" required />
+            </div>
+            <div class="form-group">
+                <label for="PhysicsGrade">Physics Grade</label>
+                <input type="number" class="form-control" id="PhysicsGrade" name="PhysicsGrade" placeholder="Enter Physics Grade" required min="0" max="100" />
+            </div>
+            <div class="form-group">
+                <label for="MathematicsGrade">Mathematics Grade</label>
+                <input type="number" class="form-control" id="MathematicsGrade" name="MathematicsGrade" placeholder="Enter Mathematics Grade" required min="0" max="100" />
+            </div>
+            <div class="form-group">
+                <label for="Science">Science Grade</label>
+                <input type="number" class="form-control" id="Science" name="Science" placeholder="Enter Science Grade" required min="0" max="100" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Add Student</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>  
